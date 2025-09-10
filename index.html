@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steel City HomeCare | Subscription Home Maintenance</title>
+    <meta name="description" content="Professional home maintenance subscription service in Pittsburgh. Keep your home in perfect condition with our affordable monthly plans.">
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --secondary: #E74C3C;
+            --accent: #3498DB;
+            --light: #ECF0F1;
+            --dark: #2C3E50;
+            --success: #27AE60;
+            --font-primary: 'Roboto', sans-serif;
+            --font-secondary: 'Montserrat', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://placehold.co/1200x600') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: var(--font-secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-family: var(--font-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: #ddd;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .service-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* Membership Plans */
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .plan-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .plan-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--secondary);
+            position: relative;
+        }
+        
+        .plan-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .plan-price span {
+            font-size: 1rem;
+            color: #777;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Booking Form */
+        .booking-section {
+            background-color: var(--light);
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-primary);
+        }
+        
+        /* FSM Dashboard Simulation */
+        .dashboard-section {
+            background-color: #f9f9f9;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .dashboard-tab.active {
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 700;
+        }
+        
+        .dashboard-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .dashboard-table th, 
+        .dashboard-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .dashboard-table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-scheduled {
+            background-color: #EBF5FB;
+            color: var(--accent);
+        }
+        
+        .status-completed {
+            background-color: #EAFAF1;
+            color: var(--success);
+        }
+        
+        /* Google Presence Mockup */
+        .google-mockup {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gbp-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .gbp-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 20px;
+        }
+        
+        .gbp-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .gbp-rating {
+            color: #FFA500;
+            margin-bottom: 5px;
+        }
+        
+        .gbp-meta {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .gbp-posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .gbp-post {
+            height: 150px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .gbp-reviews {
+            margin-top: 20px;
+        }
+        
+        .review-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .review-author {
+            font-weight: 500;
+        }
+        
+        .review-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-family: var(--font-secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gbp-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Steel City HomeCare",
+      "image": "https://placehold.co/400x300",
+      "@id": "",
+      "url": "https://www.steelcityhomecare.com",
+      "telephone": "(412) 555-0123",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main Street",
+        "addressLocality": "Pittsburgh",
+        "addressRegion": "PA",
+        "postalCode": "15212",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.4406,
+        "longitude": -79.9959
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.4406,
+          "longitude": -79.9959
+        },
+        "geoRadius": "24140"
+      },
+      "sameAs": [
+        "https://www.facebook.com/steelcityhomecare",
+        "https://www.instagram.com/steelcityhomecare"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Steel City <span>HomeCare</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#booking">Book Now</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#booking" class="btn">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Home Maintenance for Pittsburgh Homeowners</h1>
+                <p>Subscribe to our affordable monthly plans and keep your home in perfect condition without the hassle.</p>
+                <a href="#plans" class="btn">View Our Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer comprehensive home maintenance services to keep your property in excellent condition year-round.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="service-content">
+                        <h3>Regular Maintenance</h3>
+                        <p>Monthly check-ups to ensure all home systems are functioning properly.</p>
+                        <div class="price">Starting at $79/month</div>
+                        <a href="#booking" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="service-content">
+                        <h3>Seasonal Services</h3>
+                        <p>Specialized care for each season - gutter cleaning, HVAC preparation, and more.</p>
+                        <div class="price">Starting at $99/service</div>
+                        <a href="#booking" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="service-content">
+                        <h3>Emergency Support</h3>
+                        <p>24/7 emergency repair services for urgent home issues.</p>
+                        <div class="price">Priority response for members</div>
+                        <a href="#booking" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Plans -->
+    <section class="section" id="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Subscription Plans</h2>
+                <p>Choose the plan that fits your home's needs and budget. All plans include priority scheduling and member discounts.</p>
+            </div>
+            <div class="plans-container">
+                <div class="plan-card">
+                    <h3>Basic Care</h3>
+                    <div class="plan-price">$79<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Monthly system check-up</li>
+                        <li>Minor repairs (up to 1 hour)</li>
+                        <li>10% discount on additional services</li>
+                        <li>Priority scheduling</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#booking" class="btn btn-outline">Select Plan</a>
+                </div>
+                <div class="plan-card featured">
+                    <h3>Complete Care</h3>
+                    <div class="plan-price">$149<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Everything in Basic, plus:</li>
+                        <li>Bi-monthly detailed inspections</li>
+                        <li>Minor repairs (up to 2 hours)</li>
+                        <li>Seasonal service included</li>
+                        <li>20% discount on additional services</li>
+                        <li>Phone & email support</li>
+                    </ul>
+                    <a href="#booking" class="btn">Select Plan</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Premium Care</h3>
+                    <div class="plan-price">$249<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Everything in Complete, plus:</li>
+                        <li>Weekly maintenance check</li>
+                        <li>All minor repairs included</li>
+                        <li>All seasonal services included</li>
+                        <li>Emergency response guarantee</li>
+                        <li>Dedicated support line</li>
+                    </ul>
+                    <a href="#booking" class="btn btn-outline">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="section booking-section" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book Your Service</h2>
+                <p>Fill out the form below and we'll contact you to confirm your subscription and schedule your first service.</p>
+            </div>
+            <div class="form-container">
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Your Phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Property Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="Your Address in Pittsburgh" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Interest Service</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Select a service</option>
+                            <option value="basic">Basic Care - $79/month</option>
+                            <option value="complete">Complete Care - $149/month</option>
+                            <option value="premium">Premium Care - $249/month</option>
+                            <option value="seasonal">Seasonal Service Only</option>
+                            <option value="consultation">Free Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Notes</label>
+                        <textarea id="message" class="form-control" rows="4" placeholder="Any specific concerns or requests?"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FSM Dashboard Simulation -->
+    <section class="section dashboard-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Field Service Management Dashboard</h2>
+                <p>Simulated view of our Jobber-based management system for tracking appointments, customers, and jobs.</p>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-tabs">
+                    <div class="dashboard-tab active">Dashboard</div>
+                    <div class="dashboard-tab">Clients</div>
+                    <div class="dashboard-tab">Jobs</div>
+                    <div class="dashboard-tab">Schedule</div>
+                    <div class="dashboard-tab">Invoices</div>
+                </div>
+                <h3>Today's Schedule</h3>
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Client</th>
+                            <th>Service</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>9:00 AM</td>
+                            <td>John Smith</td>
+                            <td>Seasonal Gutters Cleaning</td>
+                            <td>123 Oak St, Pittsburgh</td>
+                            <td><span class="status-badge status-scheduled">Scheduled</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:30 AM</td>
+                            <td>Maria Rodriguez</td>
+                            <td>Monthly Maintenance Check</td>
+                            <td>456 Maple Ave, Pittsburgh</td>
+                            <td><span class="status-badge status-scheduled">Scheduled</span></td>
+                        </tr>
+                        <tr>
+                            <td>2:00 PM</td>
+                            <td>Robert Johnson</td>
+                            <td>HVAC System Preparation</td>
+                            <td>789 Elm Blvd, Pittsburgh</td>
+                            <td><span class="status-badge status-scheduled">Scheduled</span></td>
+                        </tr>
+                        <tr>
+                            <td>4:00 PM</td>
+                            <td>Sarah Williams</td>
+                            <td>New Subscription Assessment</td>
+                            <td>101 Pine Rd, Pittsburgh</td>
+                            <td><span class="status-badge status-scheduled">Scheduled</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Presence Mockup -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Google Business Profile Simulation</h2>
+                <p>How our service will appear in local search results and Google Maps.</p>
+            </div>
+            <div class="google-mockup">
+                <div class="gbp-header">
+                    <div class="gbp-avatar"></div>
+                    <div class="gbp-info">
+                        <h3>Steel City HomeCare</h3>
+                        <div class="gbp-rating">★★★★★ 4.9 (127 reviews)</div>
+                        <div class="gbp-meta">Home maintenance service · $$$ · Opens 8:00 AM - 6:00 PM</div>
+                        <div class="gbp-meta">(412) 555-0123 · steelcityhomecare.com</div>
+                        <div class="gbp-meta">123 Main Street, Pittsburgh, PA</div>
+                    </div>
+                </div>
+                <div class="gbp-posts">
+                    <div class="gbp-post">Fall Maintenance Special - 15% Off Seasonal Services</div>
+                    <div class="gbp-post">New Subscription Plans Available - Book Now!</div>
+                    <div class="gbp-post">Emergency Repair Services - Available 24/7 for Members</div>
+                </div>
+                <div class="gbp-reviews">
+                    <h3>Google Reviews</h3>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Michael Thompson</span>
+                            <span class="review-date">2 weeks ago</span>
+                        </div>
+                        <div class="gbp-rating">★★★★★</div>
+                        <p>Signed up for the Complete Care plan and couldn't be happier. They noticed my water heater was showing early signs of failure during a routine check and saved me from a potential disaster.</p>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-author">Jennifer Lee</span>
+                            <span class="review-date">1 month ago</span>
+                        </div>
+                        <div class="gbp-rating">★★★★★</div>
+                        <p>As a new homeowner, I was overwhelmed with maintenance tasks. Steel City HomeCare has taken all the stress away with their subscription service. Professional, punctual, and thorough every time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Request System -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Review Generation System</h2>
+                <p>Automated process for requesting and managing customer reviews.</p>
+            </div>
+            <div class="dashboard-content">
+                <h3>Review Request Templates</h3>
+                <div class="form-group">
+                    <label>SMS Template (sent 24 hours after service completion)</label>
+                    <textarea class="form-control" rows="3">Hi [Customer Name], thank you for choosing Steel City HomeCare! We hope you were satisfied with your recent service. Would you mind leaving us a review on Google? [Review Link] Your feedback helps us serve you better!</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Email Template (sent 48 hours after service completion)</label>
+                    <textarea class="form-control" rows="5">Subject: How did we do with your recent service?
+
+Dear [Customer Name],
+
+Thank you for allowing Steel City HomeCare to serve your home maintenance needs. We strive to provide exceptional service with every visit.
+
+Would you take a moment to share your experience with others by leaving a review? Your feedback helps us improve our services and helps other homeowners in Pittsburgh make informed decisions.
+
+[Leave a Google Review Button]
+
+We appreciate your time and hope to serve you again soon!
+
+Sincerely,
+The Steel City HomeCare Team</textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Steel City HomeCare</h4>
+                    <p>Professional home maintenance subscription service serving the Pittsburgh area since 2023.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Monthly Maintenance</a></li>
+                        <li><a href="#">Seasonal Services</a></li>
+                        <li><a href="#">Emergency Repairs</a></li>
+                        <li><a href="#">Subscription Plans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>123 Main Street</li>
+                        <li>Pittsburgh, PA 15212</li>
+                        <li>(412) 555-0123</li>
+                        <li>info@steelcityhomecare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Steel City HomeCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form submission handling
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your submission! In a live system, this would connect to our FSM platform (Jobber) and create a new customer record. We will contact you shortly to confirm your subscription.');
+        });
+
+        // Tab functionality for dashboard
+        const tabs = document.querySelectorAll('.dashboard-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
